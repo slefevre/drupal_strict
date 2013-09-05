@@ -29,11 +29,11 @@ class DrupalStrictHookException extends Exception {
     parent::__construct($message, $code, $previous);
   }
   
-  final public getModule() {
+  final public function getModule() {
     return $this->module;
   }
   
-  final public getHook() {
+  final public function getHook() {
     return $this->hook;
   }
   
