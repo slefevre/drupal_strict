@@ -36,4 +36,8 @@ class DrupalStrictHookException extends Exception {
   final public getHook() {
     return $this->hook;
   }
+  
+  // I'd like to override __toString, 
+  // but I'm not sure what all the original does ATM.
+  // At least want to add the module and hook
 }
