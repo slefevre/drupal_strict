@@ -1,0 +1,5 @@
+<?php
+
+function drupal_strict_menu_menu() {
+  // don't return anything
+}
