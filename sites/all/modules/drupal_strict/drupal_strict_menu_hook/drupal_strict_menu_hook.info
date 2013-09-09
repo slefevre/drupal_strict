@@ -3,4 +3,4 @@ description = Contains SimpleTests for Drupal Strict's functionality regarding h
 core = 7.x
 package = Druapl Strict
 
-files = drupal_strict_menu_hook.test.inc
+files[] = drupal_strict_menu_hook.test.inc
