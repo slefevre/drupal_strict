@@ -831,14 +831,6 @@ function module_invoke($module, $hook) {
   unset($args[0], $args[1]);
   if (module_hook($module, $hook)) {
     $result = call_user_func_array($module . '_' . $hook, $args);
-    
-    // drupal_strict: catch the name of the hook and perform various checks 
-    switch($hook) {
-      case "menu":
-        if ( ! is_array($result) ) {
-          throw new DrupalStrictHookException(t("Hook not return an array."), $module, $hook);
-        }
-    }
     return $result;
   }
 }

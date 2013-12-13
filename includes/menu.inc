@@ -2743,10 +2743,14 @@ function menu_router_build() {
   foreach (module_implements('menu') as $module) {
     $router_items = call_user_func($module . '_menu');
     if (isset($router_items) && is_array($router_items)) {
+      // Drupal strict: array validation goes here.
       foreach (array_keys($router_items) as $path) {
         $router_items[$path]['module'] = $module;
       }
       $callbacks = array_merge($callbacks, $router_items);
+    }
+    else {
+      throw new DrupalStrictHookException(t("Hook does not return an array"), $module, 'menu');
     }
   }
   // Alter the menu as defined in modules, keys are like user/%user.
