@@ -27,6 +27,7 @@ class DrupalStrictHookException extends Exception {
     $this->module = $module;
     $this->hook = $hook;
     parent::__construct($message, $code, $previous);
+    $this->message = "Module '$module' hook '$hook': " . $this->message;
   }
   
   final public function getModule() {
@@ -36,8 +37,9 @@ class DrupalStrictHookException extends Exception {
   final public function getHook() {
     return $this->hook;
   }
-  
-  // I'd like to override __toString, 
-  // but I'm not sure what all the original does ATM.
-  // At least want to add the module and hook
+ 
+  // override the __toString method to include the module and hook names 
+  public function __toString() {
+    return $this->message;
+  }
 }
