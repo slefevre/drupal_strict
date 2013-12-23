@@ -2748,6 +2748,9 @@ function menu_router_build() {
       }
       $callbacks = array_merge($callbacks, $router_items);
     }
+    else {
+      throw new DrupalStrictHookException(t("Hook does not return an array"), $module, 'menu');
+    }
   }
   // Alter the menu as defined in modules, keys are like user/%user.
   drupal_alter('menu', $callbacks);
