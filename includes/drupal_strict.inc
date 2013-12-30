@@ -1,11 +1,16 @@
 <?php
 
 /**
+ * Does nothing; used for exceptions to see if they are DrupalStrict exceptions.
+ */
+interface DrupalStrict {}
+
+/**
  * @file 
  * Provides functions and classes for drupal_strict conformance checking.
  */
 
-class DrupalStrictException extends Exception {
+class DrupalStrictException extends Exception implements DrupalStrict {
   
   /**
    * Presently does nothing besides call the parent constructor.
@@ -18,7 +23,7 @@ class DrupalStrictException extends Exception {
 /** 
  * Has extra parameters to record the module and hook whence the problem originates.
  */
-class DrupalStrictHookException extends Exception {
+class DrupalStrictHookException extends Exception implements DrupalStrict {
   
   protected $hook;
   protected $module;
