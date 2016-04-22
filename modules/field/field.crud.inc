@@ -213,11 +213,12 @@ function field_create_field($field) {
  *   structure. Any other properties of the field that are not
  *   specified in $field will be left unchanged, so it is not
  *   necessary to pass in a fully populated $field structure.
+ *   drupal strict -- added type checking ot argument
  * @return
  *   Throws a FieldException if the update cannot be performed.
  * @see field_create_field()
  */
-function field_update_field($field) {
+function field_update_field(array $field) {
   // Check that the specified field exists.
   $prior_field = field_read_field($field['field_name']);
   if (empty($prior_field)) {
