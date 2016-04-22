@@ -1,0 +1,6 @@
+name = Drupal Strict Menu Hook
+description = Contains SimpleTests for Drupal Strict's functionality regarding hook_menu. 
+core = 7.x
+package = Druapl Strict
+
+files[] = drupal_strict_menu_hook.test.inc

@@ -5216,7 +5216,10 @@ function _drupal_bootstrap_full() {
   require_once DRUPAL_ROOT . '/includes/ajax.inc';
   require_once DRUPAL_ROOT . '/includes/token.inc';
   require_once DRUPAL_ROOT . '/includes/errors.inc';
-
+  
+  // drupal_strict
+  require_once DRUPAL_ROOT . '/includes/drupal_strict.inc';
+  
   // Detect string handling method
   unicode_check();
   // Undo magic quotes

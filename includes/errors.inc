@@ -119,6 +119,8 @@ function _drupal_decode_exception($exception) {
     '%function' => $caller['function'],
     '%file' => $caller['file'],
     '%line' => $caller['line'],
+    // Drupal Strict: hang on to the backtrace. 
+    'backtrace' => $exception->getTraceAsString(),
     'severity_level' => WATCHDOG_ERROR,
   );
 }
@@ -240,9 +242,15 @@ function _drupal_log_error($error, $fatal = FALSE) {
 
     if ($fatal) {
       drupal_set_title(t('Error'));
+
+      // Drupal Strict: show the backtrace
+      drupal_set_message(t('<pre>@backtrace</p>',array('@backtrace'=>$error['backtrace'])),'error');
+
       // We fallback to a maintenance page at this point, because the page generation
       // itself can generate errors.
-      print theme('maintenance_page', array('content' => t('The website encountered an unexpected error. Please try again later.')));
+      print theme('maintenance_page', array('content' => t('The website encountered an unexpected error. Please try again later. @backtrace',
+       array('@backtrace'=>'<pre>' . print_r(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),1) . '<pre>')
+        )));
       exit;
     }
   }

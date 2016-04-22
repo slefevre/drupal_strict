@@ -919,7 +919,8 @@ function module_invoke($module, $hook) {
   // Remove $module and $hook from the arguments.
   unset($args[0], $args[1]);
   if (module_hook($module, $hook)) {
-    return call_user_func_array($module . '_' . $hook, $args);
+    $result = call_user_func_array($module . '_' . $hook, $args);
+    return $result;
   }
 }
 
