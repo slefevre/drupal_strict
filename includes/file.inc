@@ -1934,7 +1934,8 @@ function file_unmanaged_save_data($data, $destination = NULL, $replace = FILE_EX
   // Write the data to a temporary file.
   $temp_name = drupal_tempnam('temporary://', 'file');
   if (file_put_contents($temp_name, $data) === FALSE) {
-    drupal_set_message(t('The file could not be created.'), 'error');
+    // drupal strict: display the filename
+    drupal_set_message(t('The file \'@file\' could not be created.', array('@file'=>$temp_name)), 'error');
     return FALSE;
   }
 
