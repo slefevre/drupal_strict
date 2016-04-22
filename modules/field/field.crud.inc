@@ -221,7 +221,8 @@ function field_update_field($field) {
   // Check that the specified field exists.
   $prior_field = field_read_field($field['field_name']);
   if (empty($prior_field)) {
-    throw new FieldException('Attempt to update a non-existent field.');
+    // drupal strict -- add field name
+    throw new FieldException('Attempt to update a non-existent field \'$prior_field\'.');
   }
 
   // Use the prior field values for anything not specifically set by the new
