@@ -7960,6 +7960,10 @@ function entity_create_stub_entity($entity_type, $ids) {
  * @see EntityFieldQuery
  */
 function entity_load($entity_type, $ids = FALSE, $conditions = array(), $reset = FALSE) {
+  // drupal strict -- check that $ids
+  if ( $ids !== FALSE && ! is_array($ids) ) {
+    throw new Exception('The \$ids argument passed to `entity_load()` must be FALSE or an array, ' . gettype($ids) . ' was passed.');
+  }
   if ($reset) {
     entity_get_controller($entity_type)->resetCache();
   }
